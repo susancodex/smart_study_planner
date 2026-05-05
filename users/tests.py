@@ -15,3 +15,10 @@ class AuthTests(TestCase):
 		resp = self.client.post('/api/auth/login/', {'username': 'alice', 'password': 'pass1234'}, format='json')
 		self.assertEqual(resp.status_code, 200)
 		self.assertIn('access', resp.data)
+
+
+class RootRouteTests(TestCase):
+	def test_root_redirects_to_docs(self):
+		resp = self.client.get('/')
+		self.assertEqual(resp.status_code, 302)
+		self.assertEqual(resp.url, '/api/docs/')

@@ -1,8 +1,10 @@
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/api/docs/', permanent=False), name='home'),
     path('admin/', admin.site.urls),
     path('api/auth/', include('users.urls')),
     path('api/planner/', include('planner.urls')),
