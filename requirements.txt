@@ -1,0 +1,9 @@
+Django==6.0.4
+djangorestframework
+djangorestframework-simplejwt
+django-filter
+drf-spectacular
+gunicorn
+dj-database-url
+psycopg2-binary
+whitenoise
