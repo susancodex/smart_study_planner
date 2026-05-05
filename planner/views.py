@@ -15,6 +15,8 @@ class StudyPlanViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated, IsOwner]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return StudyPlan.objects.none()
         return StudyPlan.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
@@ -38,6 +40,8 @@ class TaskViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'subject']
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):
+            return Task.objects.none()
         return Task.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
