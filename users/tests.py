@@ -16,6 +16,19 @@ class AuthTests(TestCase):
 		self.assertEqual(resp.status_code, 200)
 		self.assertIn('access', resp.data)
 
+	def test_demo_credentials_endpoint(self):
+		resp = self.client.get('/api/auth/demo/')
+		self.assertEqual(resp.status_code, 200)
+		self.assertEqual(resp.data['username'], 'susan')
+		self.assertEqual(resp.data['password'], 'susan123')
+		self.assertEqual(resp.data['email'], 'susanacharya.sp@gmail.com')
+
+	def test_demo_user_can_login(self):
+		self.client.get('/api/auth/demo/')
+		resp = self.client.post('/api/auth/login/', {'username': 'susan', 'password': 'susan123'}, format='json')
+		self.assertEqual(resp.status_code, 200)
+		self.assertIn('access', resp.data)
+
 
 class RootRouteTests(TestCase):
 	def test_root_redirects_to_docs(self):

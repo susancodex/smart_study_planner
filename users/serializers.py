@@ -28,6 +28,12 @@ class UserResponseSerializer(serializers.Serializer):
     email = serializers.EmailField(read_only=True)
 
 
+class DemoCredentialsSerializer(serializers.Serializer):
+    username = serializers.CharField(read_only=True)
+    password = serializers.CharField(read_only=True)
+    email = serializers.EmailField(read_only=True)
+
+
 class TokenPairSerializer(serializers.Serializer):
     access = serializers.CharField(read_only=True)
     refresh = serializers.CharField(read_only=True)
