@@ -103,7 +103,7 @@ class DemoCredentialsView(APIView):
         ensure_demo_user()
         return Response(
             {
-                'username': 'susan',
+                'username': 'susanacharya',
                 'password': 'susan123',
                 'email': 'susanacharya.sp@gmail.com',
             }

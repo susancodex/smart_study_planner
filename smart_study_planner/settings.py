@@ -161,6 +161,44 @@ SIMPLE_JWT = {
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Smart Study Planner API',
-    'DESCRIPTION': 'API schema for Smart Study Planner',
+    'DESCRIPTION': (
+        '## Smart Study Planner\n\n'
+        'A REST API for managing personal study plans and tasks with JWT authentication.\n\n'
+        '### How to use this API\n\n'
+        '1. **Get demo credentials** — call `GET /api/auth/demo/` to see the demo account.\n'
+        '2. **Login** — call `POST /api/auth/login/` with `username` and `password` to receive an `access` token.\n'
+        '3. **Authorize** — click the **Authorize** button above, enter `Bearer <your_access_token>`, then click Authorize.\n'
+        '4. **Use any endpoint** — all study plan and task endpoints are now unlocked.\n\n'
+        '### Demo credentials\n'
+        '- **username:** `susanacharya`\n'
+        '- **password:** `susan123`\n'
+    ),
     'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SECURITY': [{'BearerAuth': []}],
+    'COMPONENTS': {
+        'securitySchemes': {
+            'BearerAuth': {
+                'type': 'http',
+                'scheme': 'bearer',
+                'bearerFormat': 'JWT',
+                'description': 'Enter your JWT access token as: Bearer <token>',
+            }
+        }
+    },
+    'SWAGGER_UI_SETTINGS': {
+        'deepLinking': True,
+        'persistAuthorization': True,
+        'displayOperationId': False,
+        'defaultModelsExpandDepth': 1,
+        'defaultModelExpandDepth': 2,
+        'docExpansion': 'list',
+        'filter': True,
+        'tryItOutEnabled': True,
+    },
+    'TAGS': [
+        {'name': 'Authentication', 'description': 'Register, login, and manage tokens.'},
+        {'name': 'Study Plans', 'description': 'Create and manage your study plans.'},
+        {'name': 'Tasks', 'description': 'Create and manage tasks within a study plan.'},
+    ],
 }

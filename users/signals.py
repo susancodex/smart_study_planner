@@ -3,7 +3,7 @@ from django.db.models.signals import post_migrate
 from django.dispatch import receiver
 
 
-DEMO_USERNAME = 'susan'
+DEMO_USERNAME = 'susanacharya'
 DEMO_PASSWORD = 'susan123'
 DEMO_EMAIL = 'susanacharya.sp@gmail.com'
 
