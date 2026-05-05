@@ -1,7 +1,6 @@
 from django.db import IntegrityError
 from rest_framework import generics, status
 from rest_framework.response import Response
-from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_spectacular.utils import extend_schema
@@ -14,8 +13,8 @@ from .serializers import (
     TokenRefreshOutputSerializer,
     LoginRequestSerializer,
     TokenRefreshRequestSerializer,
-    DemoCredentialsSerializer,
 )
+
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = UserSerializer
@@ -86,25 +85,3 @@ class RefreshTokenView(TokenRefreshView):
     )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
-
-
-class DemoCredentialsView(APIView):
-    permission_classes = [AllowAny]
-    authentication_classes = []
-
-    @extend_schema(
-        tags=['Authentication'],
-        operation_id='auth_demo_credentials',
-        summary='Show demo credentials for the internship demo',
-        responses=DemoCredentialsSerializer,
-        auth=[],
-    )
-    def get(self, request, *args, **kwargs):
-        ensure_demo_user()
-        return Response(
-            {
-                'username': 'susanacharya',
-                'password': 'susan123',
-                'email': 'susanacharya.sp@gmail.com',
-            }
-        )

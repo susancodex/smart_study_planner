@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -25,12 +26,6 @@ class RegisterRequestSerializer(serializers.Serializer):
 class UserResponseSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(read_only=True)
-    email = serializers.EmailField(read_only=True)
-
-
-class DemoCredentialsSerializer(serializers.Serializer):
-    username = serializers.CharField(read_only=True)
-    password = serializers.CharField(read_only=True)
     email = serializers.EmailField(read_only=True)
 
 

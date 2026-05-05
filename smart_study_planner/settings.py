@@ -165,7 +165,7 @@ SPECTACULAR_SETTINGS = {
         '## Smart Study Planner\n\n'
         'A REST API for managing personal study plans and tasks with JWT authentication.\n\n'
         '### How to use this API\n\n'
-        '1. **Get demo credentials** — call `GET /api/auth/demo/` to see the demo account.\n'
+        '1. **Use the demo credentials** listed in the docs — or register via `POST /api/auth/register/`.\n'
         '2. **Login** — call `POST /api/auth/login/` with `username` and `password` to receive an `access` token.\n'
         '3. **Authorize** — click the **Authorize** button above, enter `Bearer <your_access_token>`, then click Authorize.\n'
         '4. **Use any endpoint** — all study plan and task endpoints are now unlocked.\n\n'
