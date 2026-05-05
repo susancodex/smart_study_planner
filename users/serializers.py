@@ -8,5 +8,22 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(**validated_data)
-        return user
+        return User.objects.create_user(**validated_data)
+
+
+class TokenPairSerializer(serializers.Serializer):
+    access = serializers.CharField(read_only=True)
+    refresh = serializers.CharField(read_only=True)
+
+
+class TokenRefreshOutputSerializer(serializers.Serializer):
+    access = serializers.CharField(read_only=True)
+
+
+class LoginRequestSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField(write_only=True)
+
+
+class TokenRefreshRequestSerializer(serializers.Serializer):
+    refresh = serializers.CharField()
