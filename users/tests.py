@@ -9,10 +9,10 @@ class AuthTests(TestCase):
 
 	def test_register_and_login(self):
 		# Register
-		resp = self.client.post('/api/auth/register/', {'username': 'alice', 'password': 'pass1234', 'email': 'a@example.com'}, format='json')
+		resp = self.client.post('/api/auth/register/', {'username': 'alice', 'password': 'StrongPass123!', 'email': 'a@example.com'}, format='json')
 		self.assertEqual(resp.status_code, 201)
 		# Login (obtain token)
-		resp = self.client.post('/api/auth/login/', {'username': 'alice', 'password': 'pass1234'}, format='json')
+		resp = self.client.post('/api/auth/login/', {'username': 'alice', 'password': 'StrongPass123!'}, format='json')
 		self.assertEqual(resp.status_code, 200)
 		self.assertIn('access', resp.data)
 

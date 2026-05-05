@@ -37,6 +37,11 @@ class RegisterView(generics.GenericAPIView):
                 {"detail": "A user with that username already exists."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
+        except Exception:
+            return Response(
+                {"detail": "Unable to create user. Please check the submitted data."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
         return Response(
             {
                 "id": serializer.instance.id,
