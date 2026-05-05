@@ -6,6 +6,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from drf_spectacular.utils import extend_schema
 from .serializers import (
     UserSerializer,
+    RegisterRequestSerializer,
+    UserResponseSerializer,
     TokenPairSerializer,
     TokenRefreshOutputSerializer,
     LoginRequestSerializer,
@@ -21,8 +23,8 @@ class RegisterView(generics.GenericAPIView):
         tags=['Authentication'],
         operation_id='auth_register',
         summary='Register a new user',
-        request=UserSerializer,
-        responses=UserSerializer,
+        request=RegisterRequestSerializer,
+        responses={201: UserResponseSerializer},
         auth=[],
     )
     def post(self, request, *args, **kwargs):
@@ -35,7 +37,14 @@ class RegisterView(generics.GenericAPIView):
                 {"detail": "A user with that username already exists."},
                 status=status.HTTP_400_BAD_REQUEST,
             )
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(
+            {
+                "id": serializer.instance.id,
+                "username": serializer.instance.username,
+                "email": serializer.instance.email,
+            },
+            status=status.HTTP_201_CREATED,
+        )
 
 
 class LoginView(TokenObtainPairView):
